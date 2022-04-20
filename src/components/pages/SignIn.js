@@ -81,7 +81,7 @@ let handleSubmit = ()=>{
                                             <a href="/"><img src={`${blacklogo}`} alt="image" /></a>
                                         </div>
                                         <h3>Welcome back</h3>
-                                        <p>New to azed Bank? 
+                                        <p>New to FirstTech Bank? 
                                             <Link to={"/signup"}>
                                             <a>Sign up</a>
                                             </Link>

@@ -1037,7 +1037,7 @@ function HomePageApp() {
               </div>
             </div>
             <div class="copyright-area">
-              <p>© 2022 Azed - All rights Reserved</p>
+              <p>© 2022 FirstTech - All rights Reserved</p>
             </div>
           </div>
         </footer>

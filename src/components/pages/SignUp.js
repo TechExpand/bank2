@@ -81,7 +81,7 @@ let handleSubmit = ()=>{
                                         <div class="logo">
                                             <a href="/"><img src={`${blacklogo}`} alt="image" /></a>
                                         </div>
-                                        <h3>Open up your azed account now</h3>
+                                        <h3>Open up your FirstTech account now</h3>
                                         <p>Already signed up? <Link to={"/signin"}>
                                             <a>Log in</a>
                                             </Link></p>

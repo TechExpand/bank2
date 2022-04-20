@@ -461,7 +461,7 @@ function Feature (){
                         <p>
                             ©
                            2022
-                            Azed - All rights Reserved 
+                           FirstTech - All rights Reserved 
                         </p>
                     </div>
                 </div>

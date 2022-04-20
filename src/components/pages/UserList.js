@@ -145,11 +145,11 @@ const handleSearch = (e)=>{
         <div className="d-block mb-4 mb-md-0">
           <Breadcrumb className="d-none d-md-inline-block" listProps={{ className: "breadcrumb-dark breadcrumb-transparent" }}>
             <Breadcrumb.Item><FontAwesomeIcon icon={faHome} /></Breadcrumb.Item>
-            <Breadcrumb.Item>azed</Breadcrumb.Item>
+            <Breadcrumb.Item>FirstTech</Breadcrumb.Item>
             <Breadcrumb.Item active>Users</Breadcrumb.Item>
           </Breadcrumb>
           <h4>Users</h4>
-          <p className="mb-0">Your azed bank dashboard.</p>
+          <p className="mb-0">Your FirstTech bank dashboard.</p>
         </div>
         <div className="btn-toolbar mb-2 mb-md-0">
           <ButtonGroup>
