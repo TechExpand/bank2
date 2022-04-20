@@ -10,6 +10,7 @@ import { pageVisits, pageTraffic, pageRanking } from "../../data/tables";
 
 import commands from "../../data/commands";
 import "../../css/custom.css";
+import ReactPaginate from "react-paginate";
 
 const ValueChange = ({ value, suffix }) => {
   const valueIcon = value < 0 ? faAngleDown : faAngleUp;
@@ -243,6 +244,21 @@ export const TransactionsTable = (props) => {
     );
   };
 
+
+   // const [users, setUsers] = useState(JsonData.slice(0, 50));
+   const [pageNumber, setPageNumber] = useState(0);
+  
+   const usersPerPage = 10;
+   const pagesVisited = pageNumber * usersPerPage;
+
+   const pageCount = Math.ceil(transactions.length / usersPerPage);
+
+   const changePage = ({ selected }) => {
+     setPageNumber(selected);
+   };
+   
+   const displayUsers = transactions.slice(pagesVisited, pagesVisited + usersPerPage).map(t => <TableRow key={`transaction-${t.invoiceNumber}`} {...t} />)
+
   return (
     <Card border="light" className="table-wrapper table-responsive shadow-sm">
       <Card.Body className="pt-0">
@@ -256,9 +272,13 @@ export const TransactionsTable = (props) => {
             </tr>
           </thead>
           <tbody>
-            {transactions.map(t => <TableRow key={`transaction-${t.invoiceNumber}`} {...t} />)}
+            {displayUsers}
           </tbody>
         </Table>
+        <div className="spacer">
+
+        </div>
+       
         {/* <Card.Footer className="px-3 border-0 d-lg-flex align-items-center justify-content-between">
           <Nav>
             <Pagination className="mb-2 mb-lg-0">
@@ -280,6 +300,17 @@ export const TransactionsTable = (props) => {
           </small>
         </Card.Footer> */}
       </Card.Body>
+      <ReactPaginate
+             previousLabel={"Previous"}
+             nextLabel={"Next"}
+             pageCount={pageCount}
+             onPageChange={changePage}
+             containerClassName={"paginationBttns"}
+             previousLinkClassName={"previousBttn"}
+             nextLinkClassName={"nextBttn"}
+             disabledClassName={"paginationDisabled"}
+             activeClassName={"paginationActive"}
+            />
     </Card>
   );
 };

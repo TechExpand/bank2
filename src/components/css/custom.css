@@ -242,3 +242,56 @@ payment-name ul li input {
       padding-right: 15px;
   }
 }
+
+.img-wrapper { width: 30%; text-align: center; position: relative; padding-bottom: 30%; border-radius: 50%; overflow: hidden;  }
+
+.img-container{
+  position: absolute; width: 100%; height: 100%; top: 0; left: 0; object-fit: cover; 
+}
+
+
+
+.spacer{
+  height: 20px;
+}
+
+
+.paginationBttns {
+  width: 80%;
+  height: 40px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+
+
+.paginationBttns a {
+  padding: 10px;
+  margin: 8px;
+  border-radius: 5px;
+  border: 1px solid #EE5C44;
+  color: #EE5C44;
+  cursor: pointer;
+}
+
+.paginationBttns a:hover{
+  color: #EE5C44;
+}
+
+
+.paginationBttns a:hover {
+  color: white;
+  background-color: #EE5C44;
+}
+
+.paginationActive a {
+  color: white;
+  background-color: #EE5C44;
+}
+
+.paginationDisabled a {
+  color: white;
+
+  background-color: grey;
+}

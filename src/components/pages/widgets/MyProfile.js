@@ -12,6 +12,7 @@ import Navbar from "../utils/Navbar";
 import { getProfile } from "../../Service/Network";
 import { useState, useEffect } from 'react';
 
+
 function Profile() {
 
     const [profileData, setProfile] = useState();

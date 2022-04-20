@@ -16,6 +16,7 @@ import {getProfileList} from '../Service/Network';
 import { pageVisits, pageTraffic, pageRanking } from "../data/tables";
 import commands from "../data/commands";
 import "../css/custom.css";
+import ReactPaginate from 'react-paginate';
 
 
 
@@ -55,10 +56,6 @@ const handleSearch = (e)=>{
   const totalTransactions = queryList.length;
 
   const TableRow = (props) => {
-    // const { invoiceNumber, subscription, price, issueDate, dueDate, status } = props;
-    // const statusVariant = status === "Paid" ? "success"
-    //   : status === "Due" ? "warning"
-    //     : status === "Canceled" ? "danger" : "primary";
 
     return (
       profile.length==0?<h3>Loading</h3>:<tr>
@@ -120,6 +117,20 @@ const handleSearch = (e)=>{
       </tr>
     );
   };
+
+
+  const [pageNumber, setPageNumber] = useState(0);
+  
+  const usersPerPage = 10;
+  const pagesVisited = pageNumber * usersPerPage;
+
+  const pageCount = Math.ceil(queryList.length / usersPerPage);
+
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  };
+  
+  const displayUsers = queryList.slice(pagesVisited, pagesVisited + usersPerPage).map(t => <TableRow key={`transaction-${t.invoiceNumber}`} {...t} />)
   
 
   return (
@@ -185,30 +196,22 @@ const handleSearch = (e)=>{
             </tr>
           </thead>
           <tbody>
-            {queryList.map(t => <TableRow key={`transaction-${t.invoiceNumber}`} {...t} />)}
+            {displayUsers}
           </tbody>
         </Table>
-        {/* <Card.Footer className="px-3 border-0 d-lg-flex align-items-center justify-content-between">
-          <Nav>
-            <Pagination className="mb-2 mb-lg-0">
-              <Pagination.Prev>
-                Previous
-              </Pagination.Prev>
-              <Pagination.Item active>1</Pagination.Item>
-              <Pagination.Item>2</Pagination.Item>
-              <Pagination.Item>3</Pagination.Item>
-              <Pagination.Item>4</Pagination.Item>
-              <Pagination.Item>5</Pagination.Item>
-              <Pagination.Next>
-                Next
-              </Pagination.Next>
-            </Pagination>
-          </Nav>
-          <small className="fw-bold">
-            Showing <b>{totalTransactions}</b> out of <b>25</b> entries
-          </small>
-        </Card.Footer> */}
+       
       </Card.Body>
+      <ReactPaginate
+             previousLabel={"Previous"}
+             nextLabel={"Next"}
+             pageCount={pageCount}
+             onPageChange={changePage}
+             containerClassName={"paginationBttns"}
+             previousLinkClassName={"previousBttn"}
+             nextLinkClassName={"nextBttn"}
+             disabledClassName={"paginationDisabled"}
+             activeClassName={"paginationActive"}
+            />
     </Card>
 
     

@@ -10,10 +10,13 @@ import {Spinner} from 'react-bootstrap';
   const notify = (value) => toast(value);
 
 function Fund() {
+    // let utc = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+    // let init_date = utc;
     const notify = (value) => toast(value);
     const history = useNavigate();
     const [file, setFile] = useState();
     const [amount, setAmount] = useState("");
+    const [date, setDate] = useState("");
     const [load, setLoad] = useState(false);
     const location = useLocation();
     const profileData = location.state.data;
@@ -21,6 +24,12 @@ function Fund() {
     let handleAmount = (e)=>{
         setAmount(e.target.value);
    }
+
+
+
+   let handleDate = (e)=>{
+    setDate(e.target.value);
+}
    
    
    
@@ -33,6 +42,9 @@ function Fund() {
     //   };
 
      const uploadFile = () =>{
+if(date ===""|| amount ===""){
+  toast('Field is required')
+}else{
       setLoad(true)
       let status;
     let emaildb =  localStorage.getItem('email');
@@ -48,7 +60,8 @@ function Fund() {
       user: profileData.user,
       email: profileData.email,
       name: profileData.name,
-      amount: amount
+      amount: amount,
+      date: date.toString().slice(0,10).replace(/-/g,'/'),
     })
     }).then((res) => {
       status = res.status
@@ -70,6 +83,7 @@ function Fund() {
         console.log(res)
       } 
       });
+    }
     } 
 
       // const uploadFile = async (e) => {
@@ -105,6 +119,7 @@ function Fund() {
   return (
 
 <>
+<ToastContainer></ToastContainer>
 <Sidebar></Sidebar>
       <main className="content">
       <Navbar profile={{name:''}}/>
@@ -116,6 +131,13 @@ function Fund() {
               >
                 <Form.Label>Price: </Form.Label>
                 <Form.Control type="number" onChange={handleAmount} value={amount} placeholder="your amount" />
+              </Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlTextarea1"
+              >
+                <Form.Label>Date: </Form.Label>
+                <Form.Control type="date" onChange={handleDate} value={date} placeholder="Select Date" />
               </Form.Group>
               <Form.Group controlId="formFile" className="mb-3">
                 {/* <Form.Label>Image: </Form.Label>
