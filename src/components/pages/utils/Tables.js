@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faAngleUp, faArrowDown, faArrowUp, faEdit, faEllipsisH, faExternalLinkAlt, faEye, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { Col, Row, Nav, Card, Image, Button, Table, Dropdown, ProgressBar, Pagination, ButtonGroup } from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
-import {getTransaction} from '../../Service/Network';
+import {AccountSeparation, getTransaction} from '../../Service/Network';
 import { Routes } from "../../data/routes";
 import { pageVisits, pageTraffic, pageRanking } from "../../data/tables";
 
@@ -229,7 +229,7 @@ export const TransactionsTable = (props) => {
         </td>
         <td>
           <span className={`fw-normal text-${props.statusVariant}`}>
-          ${props.amount}
+          ${AccountSeparation(Number(props.amount))}
           </span>
         </td>
         <td>

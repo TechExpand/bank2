@@ -8,11 +8,12 @@ import { CounterWidget, CircleChartWidget, BarChartWidget, TeamMembersWidget, Pr
 import ContentLoader, { Facebook } from 'react-content-loader'
 import Sidebar from "../utils/Sidebar";
 import Navbar from "../utils/Navbar";
+import {AccountSeparation} from "../../Service/Network";
 import "../../css/custom.css";
 import { TransactionsTable } from "../../pages/utils/Tables";
 import { useState, useEffect } from 'react';
 import {getProfile, getTransaction} from '../../../components/Service/Network';
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 
 function DashboardOverview() {
@@ -20,6 +21,7 @@ function DashboardOverview() {
   const [profile, setProfile] = useState();
   const [transactions, setTransaction] = useState([]);
   const [totalTransaction, settotalTransaction] = useState(0)
+  const notify = (value) => toast(value);
 
 let handleProfile = (value)=>{
     setProfile(value);
@@ -52,6 +54,10 @@ let handleTotalTransaction = (value)=>{
 
   let total = 0;
 
+let clicked = ()=>{
+  notify("Currently in Process")
+}
+
 
   return (
     <>
@@ -74,7 +80,7 @@ let handleTotalTransaction = (value)=>{
   
 
     <ButtonGroup>
-      <Button variant="outline-secondary" size="sm">Withdraw</Button>
+      <Button variant="outline-secondary" size="sm" onClick={clicked}>Withdraw</Button>
       <Button variant="outline-secondary" size="sm">Export</Button>
     </ButtonGroup>
   </Container>
@@ -91,8 +97,8 @@ let handleTotalTransaction = (value)=>{
 
     <Col xs={12} sm={6} xl={4} className="mb-4">
       <CounterWidget
-        category="Acount Balance"
-        title={`$${profile.amount.toString()}`}
+        category="Account Balance"
+        title={`$${AccountSeparation(Number(profile.amount.toString()))}`}
         period="Feb 1 - Apr 1"
         percentage={Number(profile.amount.toString())}
         icon={faChartLine}
@@ -104,7 +110,7 @@ let handleTotalTransaction = (value)=>{
       <CounterWidget
         category="Total Amount"
         title={`$${
-          totalTransaction
+          AccountSeparation(Number(totalTransaction))
         }`}
         period="Feb 1 - Apr 1"
         percentage={28.4}

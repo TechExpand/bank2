@@ -12,7 +12,7 @@ import {React, useEffect, useState} from "react";
 import { faAngleDown,faMoneyBill, faAngleUp, faArrowDown, faArrowUp, faEdit, faEllipsisH, faExternalLinkAlt, faEye, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { Nav, Card, Image, Table, ProgressBar, Pagination } from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
-import {getProfileList} from '../Service/Network';
+import {AccountSeparation, getProfileList} from '../Service/Network';
 import { pageVisits, pageTraffic, pageRanking } from "../data/tables";
 import commands from "../data/commands";
 import "../css/custom.css";
@@ -76,7 +76,7 @@ const handleSearch = (e)=>{
         </td>
         <td>
           <span className={`fw-normal text-${props.statusVariant}`}>
-          ${props.amount}
+          ${AccountSeparation(Number(props.amount))}
           </span>
         </td>
         <td>
